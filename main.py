@@ -174,10 +174,11 @@ def main():
     # для одного объекта
     api.add_resource(posts_resources.PostsResource, '/api/posts/<int:posts_id>')
 
+    #
+    # app.run(host='0.0.0.0', port=port)
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
-    # serve(app, host='0.0.0.0', port=5000)
-
+    serve(app, host='0.0.0.0', port=port)
 
 if __name__ == "__main__":
     main()
+
