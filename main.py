@@ -15,7 +15,9 @@ from flask_restful import abort, Api
 from waitress import serve
 
 app = Flask(__name__)
+file_path = os.path.abspath(os.getcwd()) + "\guestbook.db"
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+ file_path
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -167,7 +169,8 @@ def posts_delete(id):
 
 
 def main():
-    db_session.global_init("db/guestbook.db")
+    file_path = os.path.abspath(os.getcwd()) + "\guestbook.db"
+    db_session.global_init(file_path)
     # для списка объектов
     api.add_resource(posts_resources.PostsListResource, '/api/posts')
 
